@@ -46,9 +46,9 @@ const AddBudget = () => {
                 <Form.Label>Category</Form.Label>
                 <Form.Control as="select" value={category} onChange={(e) => setCategory(e.target.value)}>
                     <option value="0">Choose...</option>
-                        {categories.map(opt => (
-                            <option value={opt.titulo}>{opt.titulo}</option>
-                    ))}               
+                    {categories.map(opt => (
+                        <option value={opt.titulo}>{opt.titulo}</option>
+                    ))}
                 </Form.Control>
                 </Form.Group>
                 <Form.Group>
