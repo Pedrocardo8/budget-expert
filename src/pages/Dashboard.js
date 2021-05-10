@@ -1,9 +1,10 @@
 import React, { useState }  from 'react';
-import {Container, Row, Col} from "react-bootstrap";
+import {Container, Row, Col, Button} from "react-bootstrap";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
 import Top from '../components/TopRow/Top';
 import LastAddedTable from '../components/LastAdded/LastAddedTable';
 import Add from '../components/Add/Add';
+import AddCategory from '../components/Add/AddCategory';
 import { useAuth } from "../context/AuthContext";
 import { RadialBarChart, RadialBar, ResponsiveContainer } from 'recharts';
 import Chart from "react-google-charts"
@@ -54,6 +55,10 @@ function Dashboard() {
       { name: 'Group E', value: 3908 },
       { name: 'Group F', value: 4800 },
     ];
+
+    function addCategory(){
+      
+    }
   return ( 
         <div className='dash'>
             <Container>
@@ -108,8 +113,8 @@ function Dashboard() {
                             title: 'Daily Transactions',
                             fontSize: '20',
                             responsive: true,
-                            titleTextStyle: { color: '#000' },
-                            legendTextStyle: { color: '#000' },
+                            titleTextStyle: { color: '#FFF' },
+                            legendTextStyle: { color: '#FFF' },
                             maintainAspectRatio: false,
                             //backgroundColor:"#0a2963"
                         }}
@@ -123,7 +128,7 @@ function Dashboard() {
                         <Add/>
                     </Col>
                 </Row>
-
+                <AddCategory/>
             </Container>
         </div>
     )

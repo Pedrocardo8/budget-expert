@@ -1,15 +1,31 @@
-import React , { useState, useContext } from 'react';
+import React , { useState, useEffect } from 'react';
 import { Form, Button } from "react-bootstrap"
 import { useAuth } from '../../context/AuthContext'
 import firebase from '../../firebase';
 
 
+
 const Add = () => {
     const [category, setCategory] = useState('');
+    const [categories, setCategories] = useState([]);
     const [amount, setAmount] = useState(0);
     const [description, setDescription] = useState('');    
     const { currentUser, logout } = useAuth()
     const [type, setType] = useState('');
+
+    useEffect(() => {
+        var user = firebase.auth().currentUser;
+        const ref = firebase.firestore().collection("categories").where("userId", "==", user.uid)
+        ref.onSnapshot((querySnapchot) => {
+            const items = [];
+            querySnapchot.forEach((doc) => {
+                items.push(doc.data())
+            });
+            setCategories(items);
+        })
+    }, []);
+
+    
 
     const addNewTransaction = (e) => {
         e.preventDefault()
@@ -31,7 +47,7 @@ const Add = () => {
             <Form onSubmit={addNewTransaction}>
                 <h2>Add new :</h2>
                 
-                <Form.Group controlId="exampleForm.ControlTextarea1">
+                                <Form.Group controlId="exampleForm.ControlTextarea1">
                 <Form.Label>Type</Form.Label>
                 <Form.Control as="select" className="my-1 mr-sm-2" value={type} onChange={(e) => setType(e.target.value)}>                         
                     <option value="0">Choose...</option>
@@ -45,12 +61,10 @@ const Add = () => {
                 <Form.Group controlId="exampleForm.ControlSelect1">
                 <Form.Label>Category</Form.Label>
                 <Form.Control as="select" value={category} onChange={(e) => setCategory(e.target.value)}>
-                <option>-</option>
-                <option>Food</option>
-                <option>Shopping</option>
-                <option>House</option>
-                <option>Salary</option>
-                <option>Investment</option>
+                    <option value="0">Choose...</option>
+                    {categories.map(opt => (
+                        <option value={opt.titulo}>{opt.titulo}</option>
+                    ))}
                 </Form.Control>
                 </Form.Group>
                 <Form.Group>

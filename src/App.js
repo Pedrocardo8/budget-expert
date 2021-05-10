@@ -19,7 +19,13 @@ function App() {
     <div>          
       <Router>          
         <AuthProvider> 
-              <Switch>                   
+              <Switch>
+                    {/*<Route path='/' exact render={() => <Dashboard  /> } />
+                    <Route path='/expenses'  render={() => <Expenses /> } />
+                    <Route path='/goals'  render={() => <Goals /> } />
+                    <Route path='/budget' render={() => <Budget /> } />
+                    <Route path='/investments' render={() => <Investments /> } />
+                    <Route path="*" render={() => <Dashboard /> } />*/} 
                 <PrivateRoute exact path="/" component={Dashboard} />
                 <PrivateRoute path="/update-profile" component={UpdateProfile} />
                 <PrivateRoute exact path="/expenses" component={Expenses} />   
