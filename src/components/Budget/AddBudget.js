@@ -6,6 +6,7 @@ import firebase from '../../firebase';
 
 const AddBudget = () => {
     const [category, setCategory] = useState('');
+    const [categories, setCategories] = useState([]);
     const [amount, setAmount] = useState(0);
     const [progress, setProgress] = useState(0);
     const { currentUser, logout } = useAuth();
@@ -24,6 +25,19 @@ const AddBudget = () => {
         setAmount(0)        
     }
 
+    React.useEffect(() => {
+        var user = firebase.auth().currentUser;
+        const ref = firebase.firestore().collection("categories").where("userId", "==", user.uid)
+        ref.onSnapshot((querySnapchot) => {
+            const items = [];
+            querySnapchot.forEach((doc) => {
+                items.push(doc.data())
+            });
+            console.log(items);
+            setCategories(items);
+        })
+    }, []);
+
     return (
         <div>
                 <Form onSubmit={addBudget}>
@@ -31,11 +45,10 @@ const AddBudget = () => {
                 <Form.Group controlId="exampleForm.ControlSelect1">
                 <Form.Label>Category</Form.Label>
                 <Form.Control as="select" value={category} onChange={(e) => setCategory(e.target.value)}>
-                <option>-</option>
-                <option>Expenses</option>
-                <option>Food</option>
-                <option>Shopping</option>
-                <option>House</option>                
+                    <option value="0">Choose...</option>
+                        {categories.map(opt => (
+                            <option value={opt.titulo}>{opt.titulo}</option>
+                    ))}               
                 </Form.Control>
                 </Form.Group>
                 <Form.Group>
