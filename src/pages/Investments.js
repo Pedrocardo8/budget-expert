@@ -26,7 +26,7 @@ function Investments() {
             initial: +initialInvestment,
             interest: +interestRate,
             time: time,
-            roi: result,
+            roi: result.toFixed(2),
             userId: currentUser.uid
         })
         setInitialInvestment(0)

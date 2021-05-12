@@ -2,7 +2,7 @@ import React from 'react'
 import {
     Container,Row,Col
   } from "react-bootstrap"
-import LastAddedTable from '../components/LastAdded/LastAddedTable';
+import AllAdded from '../components/LastAdded/AllAdded';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from 'recharts';
 
 const data = [
@@ -65,7 +65,7 @@ function Expenses() {
                 </RadarChart>
                 </Col>
                 </Row>
-                <LastAddedTable />
+                <AllAdded />
             </Container>
                                   
         </div>

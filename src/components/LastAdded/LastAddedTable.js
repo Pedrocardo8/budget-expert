@@ -10,12 +10,11 @@ export const LastAddedTable = () => {
     var dd = 0
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
-
     today = dd + '/' + mm + '/' + yyyy;
 
     useEffect(() => {
         var user = firebase.auth().currentUser;
-        const ref = firebase.firestore().collection("transactions").where("userId", "==", user.uid)//.where('created', '>=', new Date(2021, 1, 1)).where('created', '<=', new Date(2021, 5, 30))
+        const ref = firebase.firestore().collection("transactions").where("userId", "==", user.uid)//.where('created', '>', new Date(2021, 1, 1))
         ref.onSnapshot((querySnapchot) => {
             const items = [];
             querySnapchot.forEach((doc) => {
