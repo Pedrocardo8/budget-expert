@@ -7,6 +7,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import Fab from '@material-ui/core/Fab';
 import EditIcon from '@material-ui/icons/Edit';
+import Chart from "react-google-charts"
 
 
 export default function GoalLine({goal, key}) {
@@ -43,8 +44,29 @@ export default function GoalLine({goal, key}) {
     return(
         <div className="col-12 col-lg-5 border border-secondary rounded m-3">
             <h2 className="text-center">{goal.titulo}</h2>
-            <p>{goal.valorPago}</p>
-            <p>{goal.valorTotal}</p>
+            <p className="">PaidValue:{goal.valorPago}</p>
+            <p>TotalValue:{goal.valorTotal}</p>
+            <Chart
+                        width={'550px'}
+                        height={'300px'}
+                        align={'left'}
+                        chartType="PieChart"
+                        loader={<div>Loading Chart</div>}
+                        data={[
+                            ['Task', 'Hours per Day'],
+                            ['Paid', 1],
+                            ['Total', 5], 
+                        ]}
+                        options={{
+                            fontSize: '15',
+                            responsive: true,
+                            titleTextStyle: { color: '#000' },
+                            legendTextStyle: { color: '#000' },
+                            maintainAspectRatio: false,
+                            //backgroundColor:"#0a2963"
+                        }}
+                        rootProps={{ 'data-testid': '1' }}
+                    />  
             <div className="d-flex">
                 <Button variant="outline-primary mt-2 mr-1" className="add-goal" onClick={addShow}>Add Income</Button>
 
