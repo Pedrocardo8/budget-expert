@@ -7,7 +7,7 @@ export default function AddGoal() {
     const [titulo, setTitulo] = useState("");
     const [custo, setCusto] = useState(0);
     const [pago, setPago] = useState(0);
-    const { currentUser, logout } = useAuth()
+    const { currentUser, logout } = useAuth();
 
 
     const addNewGoal = (e) => {
@@ -19,6 +19,10 @@ export default function AddGoal() {
             valorTotal: +custo,
             userId: currentUser.uid
         })
+        clearData();
+    }
+
+    const clearData = () => {
         setTitulo('');
         setCusto(0);
         setPago(0);
@@ -40,7 +44,7 @@ export default function AddGoal() {
                 <Form.Label>Pago</Form.Label>
                 <Form.Control type="text" placeholder="Ex. 0" value={pago} onChange={(e) => setPago(e.target.value)}></Form.Control>
             </Form.Group>
-            <Button type="submit" className="add-goal" block>Add Goal</Button>
+            <Button type="submit" className="add-goal" onClick={addNewGoal} block>Add Goal</Button>
         </Form>
     );
 }

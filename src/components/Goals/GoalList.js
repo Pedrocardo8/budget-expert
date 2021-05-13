@@ -24,7 +24,9 @@ export const GoalList = () => {
     return(
         <div>
             <h2>Goals</h2>
-            {goals.map(goal => (<GoalLine key={goal.id} goal={goal} />))}
+            {goals.map(goal => (
+                <GoalLine  key={goal.id} goal={goal} />
+            ))}
 
         </div>
     )
