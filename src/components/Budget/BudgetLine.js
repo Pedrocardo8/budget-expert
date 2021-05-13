@@ -33,7 +33,7 @@ function BudgetLine( { budget } )  {
                 <Row>
                     <Col xs={8} md={8} lg={8}>
                         <h3>{budget.category}</h3>
-                        <ProgressBar variant="success" now={progress} />
+                        <ProgressBar variant={progress < 80 ? 'success' : 'danger'} now={progress} />
                     </Col>
                     <Col>
                         <p>Limit: {budget.amount}</p>

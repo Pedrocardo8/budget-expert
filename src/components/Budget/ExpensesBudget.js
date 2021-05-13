@@ -36,7 +36,7 @@ function ExpensesBudget( { budget } )  {
                 <Row>
                     <Col>
                         <h3 className="text-white">{budget.category} for {monthName}</h3>
-                        <ProgressBar variant="success" now={progress} />
+                        <ProgressBar variant={progress < 80 ? 'success' : 'danger'} now={progress} />
                     </Col>
                 </Row>
                 <Row>
