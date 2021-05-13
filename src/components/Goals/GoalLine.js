@@ -13,6 +13,7 @@ import Chart from "react-google-charts"
 export default function GoalLine({goal, key}) {
     const [show, setShow] = useState(false);
     const [valorPago, setValorPago] = useState(0);
+    const [addValue, setAddValue] = useState(0);
 
     const addClose = () => {
         setShow(false);
@@ -22,14 +23,19 @@ export default function GoalLine({goal, key}) {
         setShow(false);
     }
     const addCloseSave = (e) => {
-        e.preventDefault()        
-        const db = firebase.firestore()
-        db.collection("goals").where("titulo", "==", goal.titulo).get().then(querySnapshot => {
-            querySnapshot.docs[0].ref.update({
-                valorPago: +valorPago//parseInt(valorPago) + parseInt(addValue)
-            });
-        })
-        setShow(false);
+        e.preventDefault()
+        if(parseInt(addValue) + parseInt(goal.valorPago) > goal.valorTotal){
+            setShow(false);
+        }
+        else {
+            const db = firebase.firestore()
+            db.collection("goals").where("titulo", "==", goal.titulo).get().then(querySnapshot => {
+                querySnapshot.docs[0].ref.update({
+                    valorPago: parseInt(addValue) + parseInt(goal.valorPago)
+                });
+            })
+            setShow(false);
+        } 
     }
     const addShow = () => setShow(true);
 
@@ -44,8 +50,6 @@ export default function GoalLine({goal, key}) {
     return(
         <div className="col-12 col-lg-5 border border-secondary rounded m-3">
             <h2 className="text-center">{goal.titulo}</h2>
-            <p className="">PaidValue:{goal.valorPago}</p>
-            <p>TotalValue:{goal.valorTotal}</p>
             <Chart
                         width={'550px'}
                         height={'300px'}
@@ -54,8 +58,8 @@ export default function GoalLine({goal, key}) {
                         loader={<div>Loading Chart</div>}
                         data={[
                             ['Task', 'Hours per Day'],
-                            ['Paid', 1],
-                            ['Total', 5], 
+                            ['Paid', goal.valorPago],
+                            ['Left', goal.valorTotal - goal.valorPago], 
                         ]}
                         options={{
                             fontSize: '15',
@@ -78,7 +82,8 @@ export default function GoalLine({goal, key}) {
                             <Form>
                                 <Form.Group>
                                     <Form.Label>Pago: {goal.valorPago}</Form.Label>
-                                    <Form.Control type="number" placeholder="Valor a somar ao valor atualmente pago"  value={valorPago} onChange={(e) => setValorPago(e.target.value)}></Form.Control>
+                                    <p>*Valor a adicionar ao valor já pago*</p>
+                                    <Form.Control type="number" placeholder="Valor a somar ao valor atualmente pago" onChange={(e) => setAddValue(e.target.value)}></Form.Control>
                                 </Form.Group>
                                 <Form.Group>
                                     <Button variant="secondary mr-3" onClick={addClose}>
