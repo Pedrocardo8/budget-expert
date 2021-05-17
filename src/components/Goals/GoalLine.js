@@ -12,8 +12,15 @@ import Chart from "react-google-charts"
 
 export default function GoalLine({goal, key}) {
     const [show, setShow] = useState(false);
-    const [valorPago, setValorPago] = useState(0);
+    const [titulo, setTitulo] = useState(goal.titulo);
+    const [valorPago, setValorPago] = useState(goal.valorPago);
+    const [valorTotal, setValorTotal] = useState(goal.valorTotal);
     const [addValue, setAddValue] = useState(0);
+    const [showUnder, setShowUnder] = useState(false);
+
+    const showUnderFunction = () => {
+        setShowUnder(!showUnder);
+    }
 
     const addClose = () => {
         setShow(false);
@@ -44,6 +51,19 @@ export default function GoalLine({goal, key}) {
         db.collection("goals").where("titulo", "==", goal.titulo).get().then(querySnapshot => {
             querySnapshot.docs[0].ref.delete();
         })
+    }
+
+    const editGoal = (e) => {
+        e.preventDefault();
+        const db = firebase.firestore()
+        db.collection("goals").where("titulo", "==", goal.titulo).get().then(querySnapshot => {
+            querySnapshot.docs[0].ref.update({
+                titulo: titulo,
+                valorPago: valorPago,
+                valorTotal: valorTotal
+            });
+        })
+        setShowUnder(false);
     }
 
 
@@ -97,12 +117,34 @@ export default function GoalLine({goal, key}) {
                         </Modal.Body>
                     </Modal>
 
-                <Button variant="outline-secondary mt-2 mr-2" className="add-goal">Edit Goal</Button>
+                <Button variant="outline-secondary mt-2 mr-2" className="add-goal" onClick={showUnderFunction}>Edit Goal</Button>
                 <IconButton aria-label="delete"  color="primary">
                     <DeleteIcon onClick={deleteGoal}/>
                 </IconButton>
+                
                
                 </div>  
+                <div style={{display: showUnder ? 'block' : 'none' }}>
+                            <Form>
+                                <Form.Group>
+                                    <Form.Label>Título</Form.Label>
+                                    <Form.Control type="text" value={titulo} onChange={(e) => setTitulo(e.target.value)}></Form.Control>
+                                </Form.Group>
+                                <Form.Group>
+                                    <Form.Label>Valor Pago</Form.Label>
+                                    <Form.Control type="number" value={valorPago} onChange={(e) => setValorPago(e.target.value)}></Form.Control>
+                                </Form.Group>
+                                <Form.Group>
+                                    <Form.Label>Valor Total</Form.Label>
+                                    <Form.Control type="number" value={valorTotal} onChange={(e) => setValorTotal(e.target.value)}></Form.Control>
+                                </Form.Group>
+                                <Form.Group>
+                                    <Button variant="primary" onClick={editGoal}>
+                                        Save Changes
+                                    </Button>
+                                </Form.Group>
+                            </Form>
+                </div>    
 
         </div>
     );
