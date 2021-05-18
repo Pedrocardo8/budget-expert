@@ -95,7 +95,7 @@ export const  AllAdded = () => {
 
     return(
         <Col>
-            <h2>All Transactions</h2>
+            <h2 className='text-center title-dash'>All Transactions</h2>
             <Row>
                 <Col>
                     <Form onSubmit={pesquisarCategoria}>

@@ -18,9 +18,9 @@ import firebase from '../../firebase';
     }
 
     return(
-        <div>
+        <div className='mt-5'>
             <Form onSubmit={addNewCategory}>
-                <h2>Add new category</h2>
+                <h2 className='text-center title-dash'>Add new category</h2>
                 <Form.Group controlId="exampleForm.ControlTextarea1">
                     <Form.Control as="textarea" value={category} onChange={(e) => setCategory(e.target.value)}></Form.Control>
                 </Form.Group>

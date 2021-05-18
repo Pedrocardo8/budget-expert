@@ -29,7 +29,7 @@ export const LastAddedTable = () => {
 
     return(
         <Col>
-            <h2>Last Added</h2>
+            <h2 className='text-center title-dash'>Last Added</h2>
             <Table responsive striped bordered hover>
                 <thead>
                     <tr>

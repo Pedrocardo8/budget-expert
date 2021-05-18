@@ -10,6 +10,7 @@ import { RadialBarChart, RadialBar, ResponsiveContainer } from 'recharts';
 import Chart from "react-google-charts"
 
 
+
 function Dashboard() { 
     const [income, setIncome] = useState(0)
     const [data, setData] = useState([
@@ -38,27 +39,8 @@ function Dashboard() {
           total: 2290
         },
     ]);
-    const data01 = [
-      { name: 'Group A', value: 400 },
-      { name: 'Group B', value: 300 },
-      { name: 'Group C', value: 300 },
-      { name: 'Group D', value: 200 },
-      { name: 'Group E', value: 278 },
-      { name: 'Group F', value: 189 },
-    ];
-    
-    const data02 = [
-      { name: 'Group A', value: 2400 },
-      { name: 'Group B', value: 4567 },
-      { name: 'Group C', value: 1398 },
-      { name: 'Group D', value: 9800 },
-      { name: 'Group E', value: 3908 },
-      { name: 'Group F', value: 4800 },
-    ];
 
-    function addCategory(){
-      
-    }
+    
   return ( 
         <div className='dash'>
             <Container>
@@ -105,30 +87,32 @@ function Dashboard() {
                         loader={<div>Loading Chart</div>}
                         data={[
                             ['Task', 'Hours per Day'],
-                            ['Food', 11],
-                            ['House', 2],
-                            ['Car', 2],
+                            ['Food', 300],
+                            ['House', 110],
+                            ['Car', 30],
+                            ['Shopping', 150],
                         ]}
                         options={{
                             title: 'Daily Transactions',
                             fontSize: '20',
                             responsive: true,
-                            titleTextStyle: { color: '#FFF' },
-                            legendTextStyle: { color: '#FFF' },
+                            titleTextStyle: { color: '#000' },
+                            legendTextStyle: { color: '#000' },
                             maintainAspectRatio: false,
                             //backgroundColor:"#0a2963"
                         }}
                         rootProps={{ 'data-testid': '1' }}
-                    />  
+                      />  
                 </Col>       
                 </Row>
                 <Row>
                    <LastAddedTable/>
                     <Col>
                         <Add/>
+                        <AddCategory/>
                     </Col>
                 </Row>
-                <AddCategory/>
+                
             </Container>
         </div>
     )

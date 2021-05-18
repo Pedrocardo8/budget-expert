@@ -60,8 +60,7 @@ function TableRow({transaction, key} ){
                 <td>{transaction.amount}€</td>
                 <td>{transaction.description}</td>
                 <td>{new Date(transaction.created.seconds * 1000).toLocaleDateString("pt-PT")}</td>
-                <td>
-            
+                <td>            
                 <IconButton aria-label="delete"  color="primary">
                     <DeleteIcon onClick={onDelete}/>
                 </IconButton>

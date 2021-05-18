@@ -40,9 +40,9 @@ const data = [
 
 function Expenses() {
     return (
-        <div className='dash'>
-            <Container>
-                <h1>All Transactions</h1>
+        <div className='dash mt-5'>
+            <Container>                
+                <AllAdded />
                 <Row>
                  <Col md="auto" >
                 <RadarChart
@@ -65,7 +65,7 @@ function Expenses() {
                 </RadarChart>
                 </Col>
                 </Row>
-                <AllAdded />
+                
             </Container>
                                   
         </div>
