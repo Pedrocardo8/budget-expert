@@ -17,20 +17,7 @@ export const LastAddedTable = () => {
         const ref = firebase.firestore().collection("transactions").where("userId", "==", user.uid)//.where('created', '>', new Date(2021, 1, 1))
         ref.onSnapshot((querySnapchot) => {
             const items = [];
-            querySnapchot.forEach((doc) => {
-                items.push(doc.data())
-            });
-            setTransactions(items);
-            
-        })
-
-    }, []);
-  /*  useEffect(() => {
-        const final = [];
-        var user = firebase.auth().currentUser;
-        const ref = firebase.firestore().collection("transactions").where("userId", "==", user.uid)//.where('created', '>', new Date(2021, 1, 1))
-        ref.onSnapshot((querySnapchot) => {
-            const items = [];
+            const final = [];
             querySnapchot.forEach((doc) => {
                 items.push(doc.data())
             });
@@ -45,7 +32,6 @@ export const LastAddedTable = () => {
 
     }, []);
 
-*/
     return(
         <Col>
             <h2 className='text-center title-dash'>Last Added</h2>
