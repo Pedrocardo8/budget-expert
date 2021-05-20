@@ -25,8 +25,27 @@ export const LastAddedTable = () => {
         })
 
     }, []);
+  /*  useEffect(() => {
+        const final = [];
+        var user = firebase.auth().currentUser;
+        const ref = firebase.firestore().collection("transactions").where("userId", "==", user.uid)//.where('created', '>', new Date(2021, 1, 1))
+        ref.onSnapshot((querySnapchot) => {
+            const items = [];
+            querySnapchot.forEach((doc) => {
+                items.push(doc.data())
+            });
+            for(var i = 0; i < items.length; i++){
+                if(new Date(items[i].created.seconds * 1000).toLocaleDateString("pt-PT").split("/")[1] == new Date().toLocaleDateString("pt-PT").split("/")[1]) {
+                    final.push(items[i]);
+                }
+            }
+            setTransactions(final);
+            
+        })
 
+    }, []);
 
+*/
     return(
         <Col>
             <h2 className='text-center title-dash'>Last Added</h2>
