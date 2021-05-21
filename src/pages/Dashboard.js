@@ -1,4 +1,4 @@
-import React, { useState }  from 'react';
+import React, { useState, useEffect }  from 'react';
 import {Container, Row, Col, Button} from "react-bootstrap";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
 import Top from '../components/TopRow/Top';
@@ -8,15 +8,15 @@ import AddCategory from '../components/Add/AddCategory';
 import { useAuth } from "../context/AuthContext";
 import { RadialBarChart, RadialBar, ResponsiveContainer } from 'recharts';
 import Chart from "react-google-charts"
-
+import firebase from '../firebase';
 
 
 function Dashboard() { 
-    const [income, setIncome] = useState(0)
+    
     const [data, setData] = useState([
       {
         week: "Week 1",
-        income: income,
+        income: 1000,
         expense: 2400,
         total: 2400
       },
@@ -40,7 +40,28 @@ function Dashboard() {
         },
     ]);
 
-    
+    const [transactions, setTransactions] = useState([]);
+    const [budget, setBudget] = useState([]);
+
+    const amounts = transactions.map(transaction => transaction.amount);
+    const total = amounts.reduce((acc, item) => (acc += item), 0);
+    const income = amounts.filter(item => item > 0).reduce((acc, item) => (acc += item), 0);
+    const expense = (amounts.filter(item => item < 0 ).reduce((acc, item) => (acc += item), 0) * -1);
+
+
+    useEffect(() => {
+        var user = firebase.auth().currentUser;
+        const ref = firebase.firestore().collection("transactions").where("userId", "==", user.uid)
+        ref.onSnapshot((querySnapchot) => {
+            const items = [];
+            querySnapchot.forEach((doc) => {
+                items.push(doc.data())
+            });
+            setTransactions(items);
+            
+        })
+    }, []);
+
   return ( 
         <div className='dash'>
             <Container>
@@ -48,7 +69,7 @@ function Dashboard() {
                 <br/>
                 <Row md={2} >
                    <Col >
-                   <LineChart 
+                   {/*<LineChart 
                     width={550}
                     height={350}
                     data={data}
@@ -76,7 +97,39 @@ function Dashboard() {
                         dataKey="expense" 
                         stroke="#c0392b"
                     />
-                </LineChart>
+                </LineChart>*/}
+                <Chart
+                width={'500px'}
+                height={'300px'}
+                chartType="BarChart"
+                loader={<div>Loading Chart</div>}
+                data={[
+                    [
+                    'Element',
+                    'Total',
+                    { role: 'style' },
+                    {
+                        sourceColumn: 0,
+                        role: 'annotation',
+                        type: 'string',
+                        calc: 'stringify',
+                    },
+                    ],
+                    ['Balance', total, '#007BFF', null],
+                    ['Income', income, '#109618', null],
+                    ['Expenses', expense, '#DC3912', null],
+                    
+                ]}
+                options={{
+                    title: 'Total for May',
+                    width: 600,
+                    height: 400,
+                    bar: { groupWidth: '95%' },
+                    legend: { position: 'none' },
+                }}
+                // For tests
+                rootProps={{ 'data-testid': '6' }}
+                />
                 </Col>
                 <Col>
                 <Chart
