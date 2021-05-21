@@ -36,7 +36,6 @@ function InvestmentsTable() {
                 </thead>
                 <tbody>                      
                     {investments.map(investment => (<TableLine key={investment.id} investment={investment} />))}                                        
-                    
                 </tbody>
             </Table>
         </Col>

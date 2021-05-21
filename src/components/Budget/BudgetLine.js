@@ -36,7 +36,7 @@ function BudgetLine( { budget } )  {
                         <ProgressBar variant={progress < 80 ? 'success' : 'danger'} now={progress} />
                     </Col>
                     <Col>
-                        <p>Limit: {budget.amount}</p>
+                        <p className="text-danger">Limit: {budget.amount}</p>
                     </Col>
                 </Row>
             </Container>

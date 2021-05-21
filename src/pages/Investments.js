@@ -88,7 +88,7 @@ function Investments() {
 
                 </Row>
 
-                <h2 className="text-center p-2">ROI Value is {roi}</h2>
+                <h2 className="text-center p-2 text-success">ROI Value is {roi}€</h2>
                 <InvestmentsTable />
                 
             </Container>

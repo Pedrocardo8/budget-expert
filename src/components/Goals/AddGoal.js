@@ -29,19 +29,19 @@ export default function AddGoal() {
     }
 
     return(
-        <Form className="goal-form" onSubmit={addNewGoal}> 
-            <h2>Create Goal</h2>
+        <Form className="goal-form p-3" onSubmit={addNewGoal}> 
+            <h2 className="title-dash">Create Goal</h2>
             <Form.Group>
-                <Form.Label >Título do Objetivo</Form.Label>
-                <Form.Control type="text" placeholder="Ex. Carro novo" value={titulo} onChange={(e) => setTitulo(e.target.value)}/>
+                <Form.Label >Goal Title</Form.Label>
+                <Form.Control type="text" placeholder="Ex. New Car" value={titulo} onChange={(e) => setTitulo(e.target.value)}/>
             </Form.Group>
 
             <Form.Group>
-                <Form.Label>Custo do Objetivo</Form.Label>
-                <Form.Control type="text" placeholder="Ex. 100000" value={custo} onChange={(e) => setCusto(e.target.value)}></Form.Control>
+                <Form.Label>Cost</Form.Label>
+                <Form.Control type="text" placeholder="Ex. 100.000€" value={custo} onChange={(e) => setCusto(e.target.value)}></Form.Control>
             </Form.Group>
             <Form.Group>
-                <Form.Label>Pago</Form.Label>
+                <Form.Label>Paid</Form.Label>
                 <Form.Control type="text" placeholder="Ex. 0" value={pago} onChange={(e) => setPago(e.target.value)}></Form.Control>
             </Form.Group>
             <Button type="submit" className="add-goal" onClick={addNewGoal} block>Add Goal</Button>

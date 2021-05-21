@@ -23,7 +23,7 @@ export const BudgetList = () => {
 
     return(
         <div>
-            <h2>Budgets</h2>
+            <h2 className='text-center title-dash'>Budgets</h2>
             {budgets.map(budget => (<BudgetLine key={budget.id} budget={budget} />))}
         </div>
     )

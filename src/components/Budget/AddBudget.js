@@ -41,7 +41,7 @@ const AddBudget = () => {
     return (
         <div>
                 <Form onSubmit={addBudget}>
-                <h2>Create Budget</h2>
+                <h2 className='text-center title-dash'>Create Budget</h2>
                 <Form.Group controlId="exampleForm.ControlSelect1">
                 <Form.Label>Category</Form.Label>
                 <Form.Control as="select" value={category} onChange={(e) => setCategory(e.target.value)}>

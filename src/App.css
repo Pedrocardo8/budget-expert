@@ -14,7 +14,7 @@ body {
 .Sidebar {
     position: absolute;
     top: 0;
-    height: 150%;
+    height: 170%;
     width: 250px;
     background-color: #2f4050;
 }
@@ -162,7 +162,7 @@ card h2 {
     border: 1px solid #0a2963;
     border-radius: .3em;
     padding: .25rem;
-    width: 7em;
+    width: 150px;
 }
 
 select {
@@ -172,4 +172,9 @@ select {
 .equals {
     font-weight: bold;
     font-size: 2rem;
+}
+
+.position-fixed {
+    width: 1500px;
+    height: 1000px;
 }

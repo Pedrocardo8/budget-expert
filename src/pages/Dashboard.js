@@ -10,36 +10,8 @@ import { RadialBarChart, RadialBar, ResponsiveContainer } from 'recharts';
 import Chart from "react-google-charts"
 import firebase from '../firebase';
 
-
 function Dashboard() { 
     
-    const [data, setData] = useState([
-      {
-        week: "Week 1",
-        income: 1000,
-        expense: 2400,
-        total: 2400
-      },
-      {
-        week: "Week 2",
-        income: 3000,
-        expense: 1398,
-        total: 2210
-      },
-      {
-        week: "Week 3",
-        income: 2000,
-        expense: 9800,
-        total: 2290
-      },
-      {
-          week: "Week 4",
-          income: 2000,
-          expense: 9800,
-          total: 2290
-        },
-    ]);
-
     const [transactions, setTransactions] = useState([]);
     const [budget, setBudget] = useState([]);
 
@@ -47,7 +19,6 @@ function Dashboard() {
     const total = amounts.reduce((acc, item) => (acc += item), 0);
     const income = amounts.filter(item => item > 0).reduce((acc, item) => (acc += item), 0);
     const expense = (amounts.filter(item => item < 0 ).reduce((acc, item) => (acc += item), 0) * -1);
-
 
     useEffect(() => {
         var user = firebase.auth().currentUser;
@@ -115,13 +86,15 @@ function Dashboard() {
                         calc: 'stringify',
                     },
                     ],
-                    ['Balance', total, '#007BFF', null],
+                    ['Balance', total, '#007BFF',null],
                     ['Income', income, '#109618', null],
                     ['Expenses', expense, '#DC3912', null],
                     
                 ]}
                 options={{
                     title: 'Total for May',
+                    fontSize: '18',
+                    responsive: true,
                     width: 600,
                     height: 400,
                     bar: { groupWidth: '95%' },

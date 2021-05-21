@@ -1,6 +1,7 @@
 import React , { useEffect, useState } from 'react';
 import GoalLine from './GoalLine';
 import firebase from '../../firebase';
+import { Container, Row } from 'react-bootstrap';
 
 export const GoalList = () => {
     const[goals, setGoals] = useState([]);
@@ -23,11 +24,14 @@ export const GoalList = () => {
 
     return(
         <div>
-            <h2>Goals</h2>
+            <h2>Current Goals</h2>
+            <Container>
+            <Row>
             {goals.map(goal => (
                 <GoalLine  key={goal.id} goal={goal} />
             ))}
-
+            </Row>
+            </Container>    
         </div>
     )
 }

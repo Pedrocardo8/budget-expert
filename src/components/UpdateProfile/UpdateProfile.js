@@ -3,6 +3,7 @@ import { Form, Button, Card, Alert } from "react-bootstrap"
 import { useAuth } from '../../context/AuthContext'
 import { Link, useHistory } from "react-router-dom"
 import user from '../../components/UpdateProfile/user.png'
+import '../../App.css';
 
 export default function UpdateProfile() {
   const emailRef = useRef()
@@ -44,8 +45,7 @@ export default function UpdateProfile() {
 
   return (
     <>
-      <Card className=" login text-white" 
-      style={{minHeight: "80vh"}}> 
+      <Card className="login position-fixed text-white"> 
         <Card.Img style={{width: "250px",borderRadius:"15px",left:"3rem"}} src={user}/>
         <Card.Body className="w-100" style={{ maxWidth: "400px"}}>
           <h2 className="text-center mb-4">Update Profile</h2>

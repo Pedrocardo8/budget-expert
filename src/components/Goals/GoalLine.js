@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Container, Button, Row, Modal, Form } from "react-bootstrap"
+import { Container, Button, Row, Modal, Form, Col } from "react-bootstrap"
 import firebase from '../../firebase';
 import { PieChart, Pie, Tooltip } from 'recharts';
 import { useAuth } from '../../context/AuthContext'
@@ -69,6 +69,7 @@ export default function GoalLine({goal, key}) {
 
     return(
         <div className="col-12 col-lg-5 border border-secondary rounded m-3">
+            <Col>
             <h2 className="text-center">{goal.titulo}</h2>
             <Chart
                         width={'550px'}
@@ -101,8 +102,8 @@ export default function GoalLine({goal, key}) {
                         <Modal.Body>
                             <Form>
                                 <Form.Group>
-                                    <Form.Label>Pago: {goal.valorPago}</Form.Label>
-                                    <p>*Valor a adicionar ao valor já pago*</p>
+                                    <Form.Label>Paid: {goal.valorPago}</Form.Label>
+                                    <p>Amount to be added to the amount already paid</p>
                                     <Form.Control type="number" placeholder="Valor a somar ao valor atualmente pago" onChange={(e) => setAddValue(e.target.value)}></Form.Control>
                                 </Form.Group>
                                 <Form.Group>
@@ -127,15 +128,15 @@ export default function GoalLine({goal, key}) {
                 <div style={{display: showUnder ? 'block' : 'none' }}>
                             <Form>
                                 <Form.Group>
-                                    <Form.Label>Título</Form.Label>
+                                    <Form.Label>Goal Title</Form.Label>
                                     <Form.Control type="text" value={titulo} onChange={(e) => setTitulo(e.target.value)}></Form.Control>
                                 </Form.Group>
                                 <Form.Group>
-                                    <Form.Label>Valor Pago</Form.Label>
+                                    <Form.Label>Paid Value</Form.Label>
                                     <Form.Control type="number" value={valorPago} onChange={(e) => setValorPago(e.target.value)}></Form.Control>
                                 </Form.Group>
                                 <Form.Group>
-                                    <Form.Label>Valor Total</Form.Label>
+                                    <Form.Label>Total Value</Form.Label>
                                     <Form.Control type="number" value={valorTotal} onChange={(e) => setValorTotal(e.target.value)}></Form.Control>
                                 </Form.Group>
                                 <Form.Group>
@@ -145,7 +146,8 @@ export default function GoalLine({goal, key}) {
                                 </Form.Group>
                             </Form>
                 </div>    
-
+            </Col>
         </div>
+      
     );
 }

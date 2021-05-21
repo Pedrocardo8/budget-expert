@@ -56,7 +56,8 @@ const [amountInFromCurrency, setAmountInFromCurrency] = useState(true)
     return (
       <>
       <div className="text-center">
-      <h1 className="title-dash text-left p-2">CurrencyConvert</h1>
+      <h1 className="title-dash ">Currency Converter</h1>
+      <p className="p-4"></p>
       <CurrencyRow
         currencyOptions={currencyOptions}
         selectedCurrency={fromCurrency}

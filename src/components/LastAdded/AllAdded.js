@@ -101,9 +101,9 @@ export const  AllAdded = () => {
                     <Form onSubmit={pesquisarCategoria}>
                         <Form.Group controlId="formBasicEmail">
                             <Form.Label>Category</Form.Label>
-                            <Form.Control type="text" placeholder="Categoria" value={categoria} onChange={(e) => setCategoria(e.target.value)}/>
+                            <Form.Control type="text" placeholder="Category" value={categoria} onChange={(e) => setCategoria(e.target.value)}/>
                         </Form.Group>
-                        <Button variant="primary" type="submit">
+                        <Button variant="outline-primary" type="submit">
                             Search
                         </Button>
                     </Form>
@@ -112,9 +112,9 @@ export const  AllAdded = () => {
                     <Form onSubmit={pesquisarValor}>
                         <Form.Group controlId="formBasicEmail">
                             <Form.Label>Amount</Form.Label>
-                            <Form.Control type="text" placeholder="Valor máximo da despesa" value={valor} onChange={(e) => setValor(e.target.value)}/>
+                            <Form.Control type="text" placeholder="Max Value" value={valor} onChange={(e) => setValor(e.target.value)}/>
                         </Form.Group>
-                        <Button variant="primary" type="submit">
+                        <Button variant="outline-success" type="submit">
                             Search
                         </Button>
                     </Form>
@@ -123,7 +123,7 @@ export const  AllAdded = () => {
                     <Form onSubmit={pesquisarDescricao}>
                         <Form.Group controlId="formBasicEmail">
                             <Form.Label>Description</Form.Label>
-                            <Form.Control type="text" placeholder="Descrição" value={descricao} onChange={(e) => setDescricao(e.target.value)}/>
+                            <Form.Control type="text" placeholder="Description" value={descricao} onChange={(e) => setDescricao(e.target.value)}/>
                         </Form.Group>
                         <Button variant="primary" type="submit">
                             Search
@@ -147,7 +147,7 @@ export const  AllAdded = () => {
                     {transactions.map(transaction => (<TableRow key={transaction.id} transaction={transaction} />))}
                 </tbody>
             </Table>     
-            <Button variant="primary" type="submit" onClick={limpar}>
+            <Button variant="outline-danger" type="submit" onClick={limpar}>
                 Clean Filters
             </Button>       
         </Col>

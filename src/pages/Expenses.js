@@ -64,8 +64,7 @@ function Expenses() {
                     />
                 </RadarChart>
                 </Col>
-                </Row>
-                
+                </Row>    
             </Container>
                                   
         </div>
