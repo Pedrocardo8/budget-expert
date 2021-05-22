@@ -68,11 +68,11 @@ export default function GoalLine({goal, key}) {
 
 
     return(
-        <div className="col-12 col-lg-5 border border-secondary rounded m-3">
+        <div className="border border-secondary rounded m-3">
             <Col>
             <h2 className="text-center">{goal.titulo}</h2>
             <Chart
-                        width={'550px'}
+                        width={'446'}
                         height={'300px'}
                         align={'left'}
                         chartType="PieChart"

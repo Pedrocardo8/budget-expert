@@ -178,3 +178,13 @@ select {
     width: 1500px;
     height: 1000px;
 }
+
+.display-goals {
+    display: flex;
+    width: 490px;
+    flex-wrap: wrap;
+}
+
+.goal-line{
+    width: 490px;
+}

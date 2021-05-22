@@ -70,7 +70,7 @@ function Dashboard() {
                     />
                 </LineChart>*/}
                 <Chart
-                width={'500px'}
+                width={'550px'}
                 height={'300px'}
                 chartType="BarChart"
                 loader={<div>Loading Chart</div>}
@@ -106,7 +106,7 @@ function Dashboard() {
                 </Col>
                 <Col>
                 <Chart
-                        width={'650px'}
+                        width={'555px'}
                         height={'400px'}
                         align={'center'}
                         chartType="PieChart"

@@ -26,11 +26,13 @@ export const GoalList = () => {
         <div>
             <h2>Current Goals</h2>
             <Container>
-            <Row>
-            {goals.map(goal => (
-                <GoalLine  key={goal.id} goal={goal} />
-            ))}
-            </Row>
+                <div className="row">
+                    <div className="col-12 col-md-6">
+                        {goals.map(goal => (
+                            <GoalLine  key={goal.id} goal={goal} />
+                        ))}
+                    </div>
+                </div>
             </Container>    
         </div>
     )
