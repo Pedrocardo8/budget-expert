@@ -190,10 +190,15 @@ select {
     flex-wrap: wrap;
 }
 
-.goal-line{
-    width: 490px;
-}
-
 .table-responsive {
     max-height: 450px;
+}
+
+.goals-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.goal {
+    width: 500px;
 }
