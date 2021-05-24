@@ -11,6 +11,9 @@ export const LastAddedTable = () => {
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
     today = dd + '/' + mm + '/' + yyyy;
+    let monthNumber = (new Date().getMonth());
+    let monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    let monthName = monthNames[monthNumber];
 
     useEffect(() => {
         var user = firebase.auth().currentUser;
@@ -34,7 +37,7 @@ export const LastAddedTable = () => {
 
     return(
         <Col>
-            <h2 className='text-center title-dash'>Last Added</h2>
+            <h2 className='text-center title-dash'>Your {monthName} Transactions</h2>
             <Table responsive striped bordered hover>
                 <thead>
                     <tr>

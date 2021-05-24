@@ -45,7 +45,7 @@ const Add = () => {
     return (
         <div>
             <Form onSubmit={addNewTransaction}>
-                <h2 className='text-center title-dash'>Add new</h2>
+                <h2 className='text-center title-dash'>Add new Transaction</h2>
                 
                                 <Form.Group controlId="exampleForm.ControlTextarea1">
                 <Form.Label>Type</Form.Label>

@@ -43,7 +43,7 @@ function Expenses() {
         <div className='dash mt-5'>
             <Container>                
                 <AllAdded />
-                <Row>
+                {/*<Row>
                  <Col md="auto" >
                 <RadarChart
                     cx={300}
@@ -64,7 +64,7 @@ function Expenses() {
                     />
                 </RadarChart>
                 </Col>
-                </Row>    
+                </Row>    */}
             </Container>
                                   
         </div>
