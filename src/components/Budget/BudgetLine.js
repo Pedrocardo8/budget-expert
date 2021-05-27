@@ -23,9 +23,7 @@ function BudgetLine( { budget } )  {
             querySnapchot.forEach((doc) => {
                 items.push(doc.data())
             });
-            setCategoryTransactions(items);
-            console.log(categoryTransactions)
-            
+            setCategoryTransactions(items);            
             
         })
 
