@@ -10,7 +10,7 @@ const AddBudget = () => {
     const [category, setCategory] = useState('');
     const [categories, setCategories] = useState([]);
     const [amount, setAmount] = useState(0);
-    const [progress, setProgress] = useState(0);
+    const [progress] = useState(0);
     const { currentUser, logout } = useAuth();
     const [showCategoryError, setCategoryError] = useState(false);
     const [showAmountError, setAmountError] = useState(false);

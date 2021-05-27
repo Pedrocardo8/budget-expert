@@ -102,7 +102,7 @@ function BudgetLine( { budget } )  {
                     <Modal.Body>                      
 
                         <Form >
-                            <h2 className='text-center title-dash'>Create Budget</h2>
+                            <h2 className='text-center title-dash'>Edit Budget</h2>
                             <Form.Group controlId="exampleForm.ControlSelect1">
                                 <Form.Label>Category</Form.Label>
                                 <Form.Control as="select" value={category} onChange={(e) => setCategory(e.target.value)}>

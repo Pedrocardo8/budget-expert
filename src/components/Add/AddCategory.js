@@ -9,7 +9,7 @@ import firebase from '../../firebase';
         const { currentUser, logout } = useAuth()
         const [category, setCategory] = useState('');
         const [categories, setCategories] = useState([]);
-        const [categoryCreate, setCategoryCreate] = useState(true);
+        const [cat, setCat] = useState(false);
 
         // vai buscar todas as categorias adicionadas anteriormente
         useEffect(() => {
@@ -29,11 +29,12 @@ import firebase from '../../firebase';
         // adicionar nova categoria
         function addNewCategory(e){
             e.preventDefault()
-            setCategoryCreate(true);
+            let x = true;
+            setCat(false);
             for(let i = 0; i < categories.length; i++) {
-                if(categories[i].titulo == category){setCategoryCreate(false)}
+                if(categories[i].titulo == category){x = false;}
             };
-            if(categoryCreate){
+            if(x && category !== ""){
                 const db = firebase.firestore()
                 db.collection("categories").add({
                     titulo:category,
@@ -42,6 +43,7 @@ import firebase from '../../firebase';
                 // repor valor inicial dos campos
                 setCategory('')
             }
+            else {setCat(true);}
     }
 
     return(
@@ -51,7 +53,7 @@ import firebase from '../../firebase';
                 <Form.Group controlId="exampleForm.ControlTextarea1">
                     <Form.Control as="textarea" value={category} onChange={(e) => setCategory(e.target.value)}></Form.Control>
                 </Form.Group>
-                <span style={{ display: categoryCreate ? "none" : "block"}} className="error">Category already exists</span>
+                <span style={{ display: cat ? "block" : "none"}} className="error">Insert valid category name</span>
                 <Button variant="primary" type="submit" block >Add</Button>                                        
             </Form>
         </div>
