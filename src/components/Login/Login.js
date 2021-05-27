@@ -44,7 +44,7 @@ export default function Login() {
       <Card className=" login text-white" 
       style={{minHeight: "100vh"}}> 
       <Card.Img style={{width: "450px",borderRadius:"15px",left:"3rem"}} src={budget}/>
-      
+      <img className="calc" style={{left:"1050px", width:"600px"}} src={calc}></img>
         <Card.Body className="w-100" style={{ maxWidth: "400px"}}>
           <h2 className="text-center mb-4">Log In</h2>
           {error && <Alert variant="danger">{error}</Alert>}
