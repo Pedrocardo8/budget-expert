@@ -16,11 +16,12 @@ export default function ForgotPassword() {
 
   async function handleSubmit(e) {
     e.preventDefault()
-
+// try catch para caso existir erro o user ser alertado
     try {
       setMessage("")
       setError("")
       setLoading(true)
+      // permite reset do value email
       await resetPassword(emailRef.current.value)
       setMessage("Check your inbox for further instructions")
     } catch {

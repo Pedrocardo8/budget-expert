@@ -16,6 +16,7 @@ export default function UpdateProfile() {
 
   function handleSubmit(e) {
     e.preventDefault()
+    // validação se as passwords são iguais
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match")
     }
@@ -23,10 +24,12 @@ export default function UpdateProfile() {
     const promises = []
     setLoading(true)
     setError("")
-
+    // validação do novo email
     if (emailRef.current.value !== currentUser.email) {
       promises.push(updateEmail(emailRef.current.value))
     }
+   // validação se as passwords são iguais
+
     if (passwordRef.current.value) {
       promises.push(updatePassword(passwordRef.current.value))
     }

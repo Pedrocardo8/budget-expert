@@ -18,11 +18,10 @@ export default function Register() {
 
   async function handleSubmit(e) {
     e.preventDefault()
-
+// validação se as passwords são iguais
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match")
     }
-
     try {
       setError("")
       setLoading(true)

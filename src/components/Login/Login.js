@@ -18,7 +18,7 @@ export default function Login() {
 
   async function handleSubmit(e) {
     e.preventDefault()
-
+// try catch para caso existir erro o user ser alertado
     try {
       setError("")
       setLoading(true)
@@ -29,6 +29,7 @@ export default function Login() {
     }
     setLoading(false)
   }
+  //provider google para o signIn auth
   const handleAuth =() => {
       auth.signInWithPopup(provider).then((result) => {
       console.log(result)

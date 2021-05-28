@@ -1,15 +1,20 @@
 import React, { useContext, useState, useEffect } from "react"
 import { auth } from "../firebase"
 
+// objeto Context, quando o React renderiza um componente, ele lê o valor do contexto atual do Provider correspondente.
+
 const AuthContext = React.createContext()
 
 export function useAuth() {
+  // auth --> metodo para chamar as funções do Firebase
   return useContext(AuthContext)
 }
 
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState()
   const [loading, setLoading] = useState(true)
+
+      // funções Firebase Auth
 
   function signup(email, password) {
     return auth.createUserWithEmailAndPassword(email, password)
