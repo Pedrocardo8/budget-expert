@@ -70,7 +70,7 @@ function Dashboard() {
                     
                 ]}
                 options={{
-                    title: 'Total for May',
+                    title: 'Total for the Month',
                     fontSize: '18',
                     responsive: true,
                     width: 600,
@@ -99,7 +99,7 @@ function Dashboard() {
                     
                     ]}
                     options={{
-                        title: 'May Transactions',
+                        title: 'Month Balance',
                         fontSize: '20',
                         responsive: true,
                         titleTextStyle: { color: '#000' },
@@ -113,14 +113,20 @@ function Dashboard() {
                       
                 </Row>
                 <Row className="under-graphs">
+                   
+                  
                    <LastAddedTable/>
+                   
+                   
+                   
                     <Col>
                         <Add/>
                     </Col>
+
                 </Row>
-                <Row>
-                    <AddCategory/>
-                </Row>
+                <AddCategory className="under-graph"/>
+                    
+                
             </Container>
         </div>
     )
