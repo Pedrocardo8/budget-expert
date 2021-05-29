@@ -68,7 +68,7 @@ function ExpensesBudget( { budget } )  {
                         <p className="text-white align-center">Current:{expense} Limit: {budget.amount}</p>   
                     </Col>
                     <Col>                  
-                        <Fab color="primary" onClick={handleShow} aria-label="edit" size="small">
+                        <Fab color="primary" onClick={handleShow} aria-label="edit" size="small" className="mt-1">
                             <EditIcon />
                         </Fab>
                     </Col>                
