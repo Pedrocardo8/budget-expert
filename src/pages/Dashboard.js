@@ -46,6 +46,7 @@ function Dashboard() {
                 <br/>
                 <Row md={2} >
                    <Col >
+                   <h2 className="title-dash">Total</h2>
                 <Chart
                 width={'550px'}
                 height={'300px'}
@@ -69,7 +70,6 @@ function Dashboard() {
                     
                 ]}
                 options={{
-                    title: 'Total for May',
                     fontSize: '18',
                     responsive: true,
                     width: 600,
@@ -82,39 +82,13 @@ function Dashboard() {
                 />
                 </Col>
                 <Col>
-                    <Chart
-                    width={'555px'}
-                    height={'400px'}
-                    align={'center'}
-                    chartType="PieChart"
-                    loader={<div>Loading Chart</div>}
-                    data={[
-                        ['Task', 'Hours per Day'],
-                        ['Income',income],
-                        ['Expenses', expense],
-                        ['Balance', total],
-                        
-                        
-                    
-                    ]}
-                    options={{
-                        title: 'May Transactions',
-                        fontSize: '20',
-                        responsive: true,
-                        titleTextStyle: { color: '#000' },
-                        legendTextStyle: { color: '#000' },
-                        maintainAspectRatio: false,
-                        //backgroundColor:"#0a2963"
-                    }}
-                    rootProps={{ 'data-testid': '1' }}
-                    /> 
+                    <AddCategory/>
                 </Col>       
                 </Row>
-                <Row>
+                <Row className="under-graphs">
                    <LastAddedTable/>
                     <Col>
                         <Add/>
-                        <AddCategory/>
                     </Col>
                 </Row>
                 

@@ -10,6 +10,9 @@ import firebase from '../../firebase';
         const [category, setCategory] = useState('');
         const [categories, setCategories] = useState([]);
         const [cat, setCat] = useState(false);
+        const [deleteCategorie, setDeleteCategorie] = useState('');
+        const [added, setAdded] = useState(false);
+        const [deleted, setDeleted] = useState(false);
 
         // vai buscar todas as categorias adicionadas anteriormente
         useEffect(() => {
@@ -24,12 +27,12 @@ import firebase from '../../firebase';
             })
         }, []);
 
-
-
         // adicionar nova categoria
         function addNewCategory(e){
             e.preventDefault()
             let x = true;
+            setDeleted(false);
+            setAdded(false);
             setCat(false);
             for(let i = 0; i < categories.length; i++) {
                 if(categories[i].titulo === category){x = false;}
@@ -42,8 +45,23 @@ import firebase from '../../firebase';
                 })
                 // repor valor inicial dos campos
                 setCategory('')
+                setAdded(true);
             }
             else {setCat(true);}
+    }
+
+    // eliminar categoria
+    function deletCategory(e) {
+        e.preventDefault();
+        setAdded(false);
+        setDeleted(false);
+        const db = firebase.firestore()        
+        db.collection("categories").where("titulo", "==", deleteCategorie).get()
+        .then(querySnapshot => {
+            querySnapshot.docs[0].ref.delete();
+        });
+        setDeleted(true);
+        setDeleteCategorie('');
     }
 
     return(
@@ -54,7 +72,21 @@ import firebase from '../../firebase';
                     <Form.Control as="textarea" value={category} onChange={(e) => setCategory(e.target.value)}></Form.Control>
                 </Form.Group>
                 <span style={{ display: cat ? "block" : "none"}} className="error">Insert valid category name</span>
+                <span style={{ display: added ? "block" : "none"}} className="success">Success!</span>
                 <Button variant="primary" type="submit" block >Add</Button>                                        
+            </Form>
+            <Form onSubmit={deletCategory} className="mt-3">
+                <h2 className='text-center title-dash'>Delete category</h2>
+                <Form.Group controlId="exampleForm.ControlTextarea1">
+                <Form.Control as="select" value={deleteCategorie} onChange={(e) => setDeleteCategorie(e.target.value)}>
+                    <option value="0">Choose...</option>
+                    {categories.map(opt => (
+                        <option value={opt.titulo}>{opt.titulo}</option>
+                    ))}
+                </Form.Control>
+                </Form.Group>
+                <span style={{ display: deleted ? "block" : "none"}} className="success">Success!</span>
+                <Button variant="primary" type="submit" block >Delete</Button>                                        
             </Form>
         </div>
     );

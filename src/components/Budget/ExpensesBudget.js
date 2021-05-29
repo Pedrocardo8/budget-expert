@@ -23,9 +23,6 @@ function ExpensesBudget( { budget } )  {
                 items.push(doc.data())
             });
             setCategoryTransactions(items);
-            console.log(categoryTransactions)
-            
-            
         })
 
     }, []);
