@@ -44,9 +44,9 @@ function Dashboard() {
             <Container>
                 <Top />
                 <br/>
+                <h2 className="title-dash text-center">Analyse With Graphs</h2>
                 <Row md={2} >
-                   <Col >
-                   <h2 className="title-dash text-center">Month Stats</h2>
+                <Col >
                 <Chart
                 width={'550px'}
                 height={'300px'}
@@ -70,6 +70,7 @@ function Dashboard() {
                     
                 ]}
                 options={{
+                    title: 'Total for May',
                     fontSize: '18',
                     responsive: true,
                     width: 600,
@@ -82,8 +83,34 @@ function Dashboard() {
                 />
                 </Col>
                 <Col>
-                    <AddCategory/>
-                </Col>       
+                    <Chart
+                    width={'555px'}
+                    height={'400px'}
+                    align={'center'}
+                    chartType="PieChart"
+                    loader={<div>Loading Chart</div>}
+                    data={[
+                        ['Task', 'Hours per Day'],
+                        ['Income',income],
+                        ['Expenses', expense],
+                        ['Balance', total],
+                        
+                        
+                    
+                    ]}
+                    options={{
+                        title: 'May Transactions',
+                        fontSize: '20',
+                        responsive: true,
+                        titleTextStyle: { color: '#000' },
+                        legendTextStyle: { color: '#000' },
+                        maintainAspectRatio: false,
+                        //backgroundColor:"#0a2963"
+                    }}
+                    rootProps={{ 'data-testid': '1' }}
+                    /> 
+                </Col>
+                      
                 </Row>
                 <Row className="under-graphs">
                    <LastAddedTable/>
@@ -91,7 +118,9 @@ function Dashboard() {
                         <Add/>
                     </Col>
                 </Row>
-                
+                <Row>
+                    <AddCategory/>
+                </Row>
             </Container>
         </div>
     )
