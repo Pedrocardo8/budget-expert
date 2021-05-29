@@ -68,14 +68,14 @@ import firebase from '../../firebase';
         <div className='mt-1 mb-3'>
             <Row>
                 <Col>
-                    <Form onSubmit={addNewCategory}>
+                    <Form onSubmit={addNewCategory} className="mt-3">
                         <h2 className='text-center title-dash'>Add new category</h2>
                         <Form.Group controlId="exampleForm.ControlTextarea1">
-                            <Form.Control as="textarea" value={category} onChange={(e) => setCategory(e.target.value)}></Form.Control>
+                            <Form.Control type="text" value={category} onChange={(e) => setCategory(e.target.value)}></Form.Control>
                         </Form.Group>
+                        <Button variant="primary" type="submit" block >Add</Button>   
                         <span style={{ display: cat ? "block" : "none"}} className="error">Insert valid category name</span>
-                        <span style={{ display: added ? "block" : "none"}} className="success">Success!</span>
-                        <Button variant="primary" type="submit" block >Add</Button>                                        
+                        <span style={{ display: added ? "block" : "none"}} className="success">Success!</span>                                     
                     </Form>
                 
                 </Col>
@@ -90,8 +90,8 @@ import firebase from '../../firebase';
                             ))}
                         </Form.Control>
                         </Form.Group>
-                        <span style={{ display: deleted ? "block" : "none"}} className="success">Success!</span>
-                        <Button variant="primary" type="submit" block >Delete</Button>                                        
+                        <Button variant="primary" type="submit" block >Delete</Button>  
+                        <span style={{ display: deleted ? "block" : "none"}} className="success">Success!</span>                                      
                     </Form>
                 
                 </Col>
