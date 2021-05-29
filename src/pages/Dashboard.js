@@ -58,7 +58,7 @@ function Dashboard() {
             <Container>
                 <Top />
                 <br/>
-                <h2 className="title-dash text-center">Analyse With Graphs</h2>
+                <h2 className="title-dash text-center">Chart Analysis</h2>
                 <Row md={2} >
                 <Col >
                 <Chart
