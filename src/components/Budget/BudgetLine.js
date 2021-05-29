@@ -7,6 +7,7 @@ import Fab from '@material-ui/core/Fab';
 import EditIcon from '@material-ui/icons/Edit';
 
 function BudgetLine( { budget } )  {
+    // crias as funções necessárias para a componente
     const[categoryTransactions, setCategoryTransactions] = useState([]);
     const [categories, setCategories] = useState([]);
 
@@ -14,7 +15,7 @@ function BudgetLine( { budget } )  {
     const expense = (amounts.filter(item => item < 0 ).reduce((acc, item) => (acc += item), 0) * -1);
     const progress = (expense/budget.amount)*100;
     
-
+    // vai buscar todas as categorias
     useEffect(() => {
         var user = firebase.auth().currentUser;
         const ref = firebase.firestore().collection("transactions").where("userId", "==", user.uid).where("category", "==", budget.category)       
@@ -41,6 +42,7 @@ function BudgetLine( { budget } )  {
     const [category, setCategory] = useState('');
     const [amount, setAmount] = useState(0);
 
+    // Eliminar budget
     const onDelete = () => {
         const db = firebase.firestore()        
         db.collection("budgets").where("category", "==", budget.category).get()
@@ -48,7 +50,7 @@ function BudgetLine( { budget } )  {
             querySnapshot.docs[0].ref.delete();
         });
       }
-    //editar
+    //editar budget
     const [show, setShow] = useState(false);
 
     const handleClose = () => {

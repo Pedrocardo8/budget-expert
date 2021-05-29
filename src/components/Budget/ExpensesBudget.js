@@ -3,6 +3,7 @@ import { ProgressBar, Container, Row, Col } from 'react-bootstrap';
 import firebase from '../../firebase';
 
 function ExpensesBudget( { budget } )  {
+    // definir todas as variáveis necessárias para o componente
     const[categoryTransactions, setCategoryTransactions] = useState([]);
 
     const amounts = categoryTransactions.map(transaction => transaction.amount);
@@ -12,7 +13,7 @@ function ExpensesBudget( { budget } )  {
     let monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     let monthName = monthNames[monthNumber];
 
-
+    // vai buscar todas as transações 
     useEffect(() => {
         var user = firebase.auth().currentUser;
         const ref = firebase.firestore().collection("transactions").where("userId", "==", user.uid)

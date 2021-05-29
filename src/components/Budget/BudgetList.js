@@ -3,8 +3,10 @@ import BudgetLine from './BudgetLine';
 import firebase from '../../firebase';
 
 export const BudgetList = () => {
+    // definir as variáveis necessárias para a componente
     const[budgets, setBudgets] = useState([]);
 
+    // vai buscar todos os budgets
     useEffect(() => {
         var user = firebase.auth().currentUser;
         const ref = firebase.firestore().collection("budgets").where("userId", "==", user.uid)        
