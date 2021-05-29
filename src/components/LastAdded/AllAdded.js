@@ -9,6 +9,7 @@ export const  AllAdded = () => {
     const [categoria, setCategoria] = useState('');
     const [valor, setValor] = useState(0);
     const [descricao, setDescricao] = useState('');
+    const [categorias, setCategorias] = useState([]);
 
 
     var today = new Date();
@@ -31,9 +32,24 @@ export const  AllAdded = () => {
 
     }, []);
 
+    useEffect(() => {
+        var user = firebase.auth().currentUser;
+        const ref = firebase.firestore().collection("categories").where("userId", "==", user.uid)
+        ref.onSnapshot((querySnapchot) => {
+            const items = [];
+            querySnapchot.forEach((doc) => {
+                items.push(doc.data())
+            });
+            setCategorias(items);
+            
+        })
+
+    }, []);
+
+    
+
     const pesquisarCategoria = (e) => {
         e.preventDefault()
-        setTransactions([])
         var user = firebase.auth().currentUser;
         const ref = firebase.firestore().collection("transactions").where("userId", "==", user.uid).where('category', '==', categoria)
         ref.onSnapshot((querySnapchot) => {
@@ -49,7 +65,6 @@ export const  AllAdded = () => {
 
     const pesquisarValor = (e) => {
         e.preventDefault()
-        setTransactions([])
         var user = firebase.auth().currentUser;
         const ref = firebase.firestore().collection("transactions").where("userId", "==", user.uid).where('amount', '==', Number(valor))
         ref.onSnapshot((querySnapchot) => {
@@ -64,7 +79,6 @@ export const  AllAdded = () => {
     }
     const pesquisarDescricao = (e) => {
         e.preventDefault()
-        setTransactions([])
         var user = firebase.auth().currentUser;
         const ref = firebase.firestore().collection("transactions").where("userId", "==", user.uid).where('description', '==', descricao)
         ref.onSnapshot((querySnapchot) => {
@@ -104,7 +118,12 @@ export const  AllAdded = () => {
                     <Form onSubmit={pesquisarCategoria}>
                         <Form.Group controlId="formBasicEmail">
                             <Form.Label>Category</Form.Label>
-                            <Form.Control type="text" placeholder="Category" value={categoria} onChange={(e) => setCategoria(e.target.value)}/>
+                            <Form.Control as="select" value={categoria} onChange={(e) => setCategoria(e.target.value)}>
+                                <option value="0">Choose...</option>
+                                {categorias.map(opt => (
+                                    <option value={opt.titulo}>{opt.titulo}</option>
+                                ))}
+                            </Form.Control>
                         </Form.Group>
                         <Button variant="outline-primary" type="submit">
                             Search
