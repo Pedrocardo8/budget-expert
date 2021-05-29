@@ -46,7 +46,7 @@ function Dashboard() {
                 <br/>
                 <Row md={2} >
                    <Col >
-                   <h2 className="title-dash text-center">Examinate Month</h2>
+                   <h2 className="title-dash text-center">Month Stats</h2>
                 <Chart
                 width={'550px'}
                 height={'300px'}

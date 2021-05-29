@@ -58,10 +58,10 @@ function BudgetLine( { budget } )  {
     }
     const handleCloseSave = (e) => {
         e.preventDefault()
-
+        var user = firebase.auth().currentUser;
         const db = firebase.firestore()    
         
-        db.collection("budgets").where("category", "==", budget.category).get().then(querySnapshot => {
+        db.collection("budgets").where("category", "==", budget.category).where("userId", "==", user.uid).get().then(querySnapshot => {
             querySnapshot.docs[0].ref.update({
                 category:category,
                 amount: +amount,               
