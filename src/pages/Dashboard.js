@@ -9,34 +9,48 @@ import firebase from '../firebase';
 
 function Dashboard() { 
     
-    const [transactions, setTransactions] = useState([]);
+    const [transactionsEver, setTransactionsEver] = useState([]);
+    const [transactionsMonth, setTransactionsMonth] = useState([]);
 
-    const amounts = transactions.map(transaction => transaction.amount);
+    const amounts = transactionsMonth.map(transaction => transaction.amount);
     const total = amounts.reduce((acc, item) => (acc += item), 0);
     const income = amounts.filter(item => item > 0).reduce((acc, item) => (acc += item), 0);
     const expense = (amounts.filter(item => item < 0 ).reduce((acc, item) => (acc += item), 0) * -1);
 
+    const amountsEver = transactionsEver.map(transaction => transaction.amount);
+    const totalEver = amountsEver.reduce((acc, item) => (acc += item), 0);
+    const incomeEver = amountsEver.filter(item => item > 0).reduce((acc, item) => (acc += item), 0);
+    const expenseEver = (amountsEver.filter(item => item < 0 ).reduce((acc, item) => (acc += item), 0) * -1);
+
+
     useEffect(() => {
         var user = firebase.auth().currentUser;
-        const ref = firebase.firestore().collection("transactions").where("userId", "==", user.uid)
+        const ref = firebase.firestore().collection("transactions").where("userId", "==", user.uid)//.where('created', '>', new Date(2021, 1, 1))
         ref.onSnapshot((querySnapchot) => {
             const items = [];
+            const final = [];
             querySnapchot.forEach((doc) => {
                 items.push(doc.data())
             });
-            setTransactions(items);
-            
+            for(var i = 0; i < items.length; i++){
+                if(new Date(items[i].created.seconds * 1000).toLocaleDateString("pt-PT").split("/")[1] === new Date().toLocaleDateString("pt-PT").split("/")[1]) {
+                    final.push(items[i]);
+                }
+            }
+            setTransactionsMonth(final);
         })
+    }, []);
 
-       /* const get = firebase.firestore().collection("categories").where("userId", "==", user.uid)
-        get.onSnapshot((querySnapchot) => {
-            const array = [];
+    useEffect(() => {
+        var user = firebase.auth().currentUser;
+        const ref = firebase.firestore().collection("transactions").where("userId", "==", user.uid)//.where('created', '>', new Date(2021, 1, 1))
+        ref.onSnapshot((querySnapchot) => {
+            const final = [];
             querySnapchot.forEach((doc) => {
-                array.push(doc.data())
+                final.push(doc.data())
             });
-            setCategories(array);
-        })*/
-
+            setTransactionsEver(final);
+        })
     }, []);
 
   return ( 
@@ -91,15 +105,15 @@ function Dashboard() {
                     loader={<div>Loading Chart</div>}
                     data={[
                         ['Task', 'Hours per Day'],
-                        ['Income',income],
-                        ['Expenses', expense],
-                        ['Balance', total],
+                        ['Income',incomeEver],
+                        ['Expenses', expenseEver],
+                        ['Balance', totalEver],
                         
                         
                     
                     ]}
                     options={{
-                        title: 'Month Balance',
+                        title: 'Balance Since day one',
                         fontSize: '20',
                         responsive: true,
                         titleTextStyle: { color: '#000' },
@@ -113,20 +127,12 @@ function Dashboard() {
                       
                 </Row>
                 <Row className="under-graphs">
-                   
-                  
                    <LastAddedTable/>
-                   
-                   
-                   
                     <Col>
                         <Add/>
                     </Col>
-
                 </Row>
                 <AddCategory className="under-graph"/>
-                    
-                
             </Container>
         </div>
     )
