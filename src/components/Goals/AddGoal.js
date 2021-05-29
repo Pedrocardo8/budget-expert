@@ -39,7 +39,7 @@ export default function AddGoal() {
         for(let i = 0; i < goals.length; i++) {
             if(goals[i].titulo == titulo){x = false;}
         };
-        if(x && titulo !== "" && parseInt(pago) > 0 && parseInt(custo) > parseInt(pago)) {
+        if(x && titulo !== "" && parseInt(custo) > 0 && parseInt(custo) > parseInt(pago)) {
             const db = firebase.firestore()
             db.collection("goals").add({
                 titulo: titulo,
