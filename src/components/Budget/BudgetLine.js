@@ -40,7 +40,6 @@ function BudgetLine( { budget } )  {
 
     const [category, setCategory] = useState('');
     const [amount, setAmount] = useState(0);
-    const [description, setDescription] = useState('');
 
     const onDelete = () => {
         const db = firebase.firestore()        
@@ -51,7 +50,6 @@ function BudgetLine( { budget } )  {
       }
     //editar
     const [show, setShow] = useState(false);
-    const [addValue, setAddValue] = useState(0);
 
     const handleClose = () => {
         setShow(false);

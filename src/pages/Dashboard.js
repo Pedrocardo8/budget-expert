@@ -1,21 +1,15 @@
 import React, { useState, useEffect }  from 'react';
-import {Container, Row, Col, Button} from "react-bootstrap";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
+import {Container, Row, Col} from "react-bootstrap";
 import Top from '../components/TopRow/Top';
 import LastAddedTable from '../components/LastAdded/LastAddedTable';
 import Add from '../components/Add/Add';
 import AddCategory from '../components/Add/AddCategory';
-import { useAuth } from "../context/AuthContext";
-import { RadialBarChart, RadialBar, ResponsiveContainer } from 'recharts';
 import Chart from "react-google-charts"
 import firebase from '../firebase';
 
 function Dashboard() { 
     
     const [transactions, setTransactions] = useState([]);
-    const [budget, setBudget] = useState([]);
-    const [categories, setCategories] = useState([]);
-
 
     const amounts = transactions.map(transaction => transaction.amount);
     const total = amounts.reduce((acc, item) => (acc += item), 0);

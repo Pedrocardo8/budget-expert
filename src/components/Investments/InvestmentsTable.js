@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import {Col,Table,Button} from 'react-bootstrap';
+import {Col,Table} from 'react-bootstrap';
 import firebase from '../../firebase';
-import DeleteIcon from '@material-ui/icons/Delete';
-import IconButton from '@material-ui/core/IconButton';
 import TableLine from '../Investments/TableLine'
 
 function InvestmentsTable() {

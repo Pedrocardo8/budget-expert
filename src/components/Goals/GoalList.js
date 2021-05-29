@@ -1,7 +1,7 @@
 import React , { useEffect, useState } from 'react';
 import GoalLine from './GoalLine';
 import firebase from '../../firebase';
-import { Container, Row } from 'react-bootstrap';
+import { Container} from 'react-bootstrap';
 
 export const GoalList = () => {
     const[goals, setGoals] = useState([]);

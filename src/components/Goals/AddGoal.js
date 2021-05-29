@@ -8,7 +8,7 @@ export default function AddGoal() {
     const [titulo, setTitulo] = useState("");
     const [custo, setCusto] = useState(0);
     const [pago, setPago] = useState(0);
-    const { currentUser, logout } = useAuth();
+    const { currentUser} = useAuth();
     const [showTitleError, setShowTitleError] = useState(false);
     const [showTotalValueError, setShowTotalValueError] = useState(false);
     const [showPaidError, setShowPaidError] = useState(false);

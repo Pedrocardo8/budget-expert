@@ -1,4 +1,3 @@
-import { TrainOutlined } from '@material-ui/icons';
 import React , { useState } from 'react';
 import { Form, Button } from "react-bootstrap";
 import { useAuth } from '../../context/AuthContext'
@@ -11,7 +10,7 @@ const AddBudget = () => {
     const [categories, setCategories] = useState([]);
     const [amount, setAmount] = useState(0);
     const [progress] = useState(0);
-    const { currentUser, logout } = useAuth();
+    const { currentUser } = useAuth();
     const [showCategoryError, setCategoryError] = useState(false);
     const [showAmountError, setAmountError] = useState(false);
     const [budgets, setBudgets] = useState([]);

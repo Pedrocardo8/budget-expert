@@ -11,7 +11,7 @@ const Add = () => {
     const [categories, setCategories] = useState([]);
     const [amount, setAmount] = useState(0);
     const [description, setDescription] = useState('');    
-    const { currentUser, logout } = useAuth()
+    const { currentUser} = useAuth()
     const [type, setType] = useState('');
     const [showCategoryError, setCategoryError] = useState(false);
     const [showAmountError, setAmountError] = useState(false);
@@ -53,13 +53,13 @@ const Add = () => {
             setDescription('')
         }
         // adiciona uma span de erro, se houver erro
-        if (category == ""){
+        if (category === ""){
             setCategoryError(true);
         }
-        if(amount == 0){
+        if(amount === 0){
             setAmountError(true);
         }
-        if(description == "") {
+        if(description === "") {
             setDescriptionError(true);
         }
     }

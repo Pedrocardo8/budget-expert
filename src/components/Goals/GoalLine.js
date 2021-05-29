@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from 'react'
-import { Container, Button, Row, Modal, Form, Col } from "react-bootstrap"
+import React, { useState } from 'react'
+import { Button, Modal, Form, Col } from "react-bootstrap"
 import firebase from '../../firebase';
-import { PieChart, Pie, Tooltip } from 'recharts';
-import { useAuth } from '../../context/AuthContext'
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
-import Fab from '@material-ui/core/Fab';
-import EditIcon from '@material-ui/icons/Edit';
+
 import Chart from "react-google-charts"
 
 

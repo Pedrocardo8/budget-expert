@@ -1,5 +1,5 @@
-import React,{useContext, useState, useEffect} from 'react';
-import { ProgressBar,Container,Row,Col} from 'react-bootstrap';
+import React,{ useState, useEffect} from 'react';
+import { Container,Row,Col} from 'react-bootstrap';
 import TopCard from './TopCard';
 import firebase from '../../firebase';
 import ExpensesBudget from '../Budget/ExpensesBudget';

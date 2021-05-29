@@ -5,7 +5,7 @@ import firebase from '../../firebase';
 
 export const  AllAdded = () => {
     const [transactions, setTransactions] = useState([]);
-    const [loading, setLoading] = useState(false);
+    //const [loading, setLoading] = useState(false);
     const [categoria, setCategoria] = useState('');
     const [valor, setValor] = useState(0);
     const [descricao, setDescricao] = useState('');

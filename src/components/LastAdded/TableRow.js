@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import Fab from '@material-ui/core/Fab';
 import EditIcon from '@material-ui/icons/Edit';
-import {Col,Table,Button, Modal, Form} from 'react-bootstrap';
+import {Button, Modal, Form} from 'react-bootstrap';
 import firebase from '../../firebase';
 
 
@@ -22,7 +22,6 @@ function TableRow({transaction, key} ){
       }
 
     const [show, setShow] = useState(false);
-    const [addValue, setAddValue] = useState(0);
 
     const handleClose = () => {
         setShow(false);

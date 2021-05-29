@@ -14,7 +14,7 @@ function Investments() {
     const [time, setTime] = useState(0);
     const [interestRate, setInterestRate] = useState(0);
     const [compound, setCompound] = useState(0);
-    const { currentUser, logout } = useAuth()
+    const { currentUser } = useAuth()
 
     
     const calculateRoi = (e) => {      
@@ -36,9 +36,6 @@ function Investments() {
         setCompound(0)
         
     }
-
-
-
 
     return (
         <div className='dash mt-5'>
