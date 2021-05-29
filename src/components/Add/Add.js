@@ -16,6 +16,7 @@ const Add = () => {
     const [showCategoryError, setCategoryError] = useState(false);
     const [showAmountError, setAmountError] = useState(false);
     const [showDescriptionError, setDescriptionError] = useState(false);
+    const [transactions, settransactions] = useState([]);
 
     // Vai buscar todas as categorias que foram criadas anteriormente
     useEffect(() => {
@@ -30,7 +31,6 @@ const Add = () => {
         })
     }, []);
 
-    
     // adiciona uma nova transação
     const addNewTransaction = (e) => {
         e.preventDefault()
@@ -47,6 +47,7 @@ const Add = () => {
                 userId: currentUser.uid,
                 created: firebase.firestore.Timestamp.fromDate(new Date())
             })
+            console.log(amount)
             // repõe os valores dos inputs
             setCategory('')
             setAmount(0)

@@ -24,7 +24,7 @@ export const GoalList = () => {
 
     return(
         <div>
-            <h2>Current Goals</h2>
+            <h2 className="title-dash text-center">Current Goals</h2>
             <Container>
                 <div className="">
                     <div className="goals-list">

@@ -15,10 +15,8 @@ export const BudgetList = () => {
             querySnapchot.forEach((doc) => {
                 items.push(doc.data())
             });
-            setBudgets(items);
-            console.log(budgets)
+            setBudgets(items.filter(data => data.category != 'Expenses'))
         })
-
     }, []);
 
 

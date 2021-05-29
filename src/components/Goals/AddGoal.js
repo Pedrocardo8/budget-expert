@@ -63,7 +63,7 @@ export default function AddGoal() {
 
     return(
         <Form className="goal-form p-3" onSubmit={addNewGoal}> 
-            <h2 className="title-dash">Create Goal</h2>
+            <h2 className="title-dash text-center">Create Goal</h2>
             <Form.Group>
                 <Form.Label >Goal Title</Form.Label>
                 <Form.Control type="text" placeholder="Ex. New Car" value={titulo} onChange={(e) => setTitulo(e.target.value)}/>
