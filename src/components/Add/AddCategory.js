@@ -6,7 +6,7 @@ import firebase from '../../firebase';
 
     function AddCategory(){
         // criar variáveis para usar no controlo
-        const { currentUser, logout } = useAuth()
+        const { currentUser } = useAuth()
         const [category, setCategory] = useState('');
         const [categories, setCategories] = useState([]);
         const [cat, setCat] = useState(false);
@@ -32,7 +32,7 @@ import firebase from '../../firebase';
             let x = true;
             setCat(false);
             for(let i = 0; i < categories.length; i++) {
-                if(categories[i].titulo == category){x = false;}
+                if(categories[i].titulo === category){x = false;}
             };
             if(x && category !== ""){
                 const db = firebase.firestore()

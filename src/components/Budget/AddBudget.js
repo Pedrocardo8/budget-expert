@@ -47,7 +47,7 @@ const AddBudget = () => {
         setCategoryError(false);
         setAmountError(false);
         for(let i = 0; i < budgets.length; i++) {
-            if(budgets[i].category == category) {
+            if(budgets[i].category === category) {
                 x = false;
             }
         }
@@ -65,8 +65,8 @@ const AddBudget = () => {
             setCategory('')
             setAmount(0) 
         }
-        if(category == "") {setCategoryError(true)}
-        if(amount == 0) {setAmountError(true)}
+        if(category === "") {setCategoryError(true)}
+        if(amount === 0) {setAmountError(true)}
                
     }
 

@@ -37,7 +37,7 @@ export default function AddGoal() {
         setShowPaidError(false);
         let x = true;
         for(let i = 0; i < goals.length; i++) {
-            if(goals[i].titulo == titulo){x = false;}
+            if(goals[i].titulo === titulo){x = false;}
         };
         if(x && titulo !== "" && parseInt(custo) > 0 && parseInt(custo) > parseInt(pago)) {
             const db = firebase.firestore()
@@ -49,7 +49,7 @@ export default function AddGoal() {
             })
             clearData();
         }
-        if(titulo == 0) {setShowTitleError(true);}
+        if(titulo === 0) {setShowTitleError(true);}
         if(parseInt(pago) <= 0) {setShowTotalValueError(true);}
         if(parseInt(custo) <= parseInt(pago)) {setShowPaidError(true);}
     }

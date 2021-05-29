@@ -5,7 +5,6 @@ import firebase from '../../firebase';
 
 export const LastAddedTable = () => {
     const [transactions, setTransactions] = useState([]);
-    const [loading, setLoading] = useState(false);
     var today = new Date();
     var dd = 0
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -25,7 +24,7 @@ export const LastAddedTable = () => {
                 items.push(doc.data())
             });
             for(var i = 0; i < items.length; i++){
-                if(new Date(items[i].created.seconds * 1000).toLocaleDateString("pt-PT").split("/")[1] == new Date().toLocaleDateString("pt-PT").split("/")[1]) {
+                if(new Date(items[i].created.seconds * 1000).toLocaleDateString("pt-PT").split("/")[1] === new Date().toLocaleDateString("pt-PT").split("/")[1]) {
                     final.push(items[i]);
                 }
             }

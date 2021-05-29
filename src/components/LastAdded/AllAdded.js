@@ -33,6 +33,7 @@ export const  AllAdded = () => {
 
     const pesquisarCategoria = (e) => {
         e.preventDefault()
+        setTransactions([])
         var user = firebase.auth().currentUser;
         const ref = firebase.firestore().collection("transactions").where("userId", "==", user.uid).where('category', '==', categoria)
         ref.onSnapshot((querySnapchot) => {
@@ -48,8 +49,9 @@ export const  AllAdded = () => {
 
     const pesquisarValor = (e) => {
         e.preventDefault()
+        setTransactions([])
         var user = firebase.auth().currentUser;
-        const ref = firebase.firestore().collection("transactions").where("userId", "==", user.uid).where('amount', '<=', -valor)
+        const ref = firebase.firestore().collection("transactions").where("userId", "==", user.uid).where('amount', '==', Number(valor))
         ref.onSnapshot((querySnapchot) => {
             const items = [];
             querySnapchot.forEach((doc) => {
@@ -62,6 +64,7 @@ export const  AllAdded = () => {
     }
     const pesquisarDescricao = (e) => {
         e.preventDefault()
+        setTransactions([])
         var user = firebase.auth().currentUser;
         const ref = firebase.firestore().collection("transactions").where("userId", "==", user.uid).where('description', '==', descricao)
         ref.onSnapshot((querySnapchot) => {
