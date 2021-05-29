@@ -50,7 +50,7 @@ export default function AddGoal() {
             clearData();
         }
         if(titulo === 0) {setShowTitleError(true);}
-        if(parseInt(pago) <= 0) {setShowTotalValueError(true);}
+        if(parseInt(pago) < 0) {setShowTotalValueError(true);}
         if(parseInt(custo) <= parseInt(pago)) {setShowPaidError(true);}
     }
 
