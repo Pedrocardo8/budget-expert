@@ -43,7 +43,7 @@ function Sidebar() {
             })}
             </ul>
             <div className="text-white user text-center">
-                <p><img style={{width:"50px"}} src={user}/><br></br>{currentUser.email}</p>
+                <p><img style={{width:"50px"}} src={user}/><br></br>{currentUser.email.split('@')[0]}</p>
                 <Link to="/update-profile" className="btn btn-primary ">
                     Update Profile
                 </Link> 
