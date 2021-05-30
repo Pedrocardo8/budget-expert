@@ -33,9 +33,9 @@ export default function GoalLine({goal, key}) {
         }
         else {
             const db = firebase.firestore()
-            db.collection("goals").where("titulo", "==", goal.titulo).get().then(querySnapshot => {
+            db.collection("goals").where("titulo", "==", goal.titulo).where("valorTotal", "==", goal.valorTotal).get().then(querySnapshot => {
                 querySnapshot.docs[0].ref.update({
-                    valorPago: parseInt(addValue) + parseInt(goal.valorPago)
+                    valorPago: Number(addValue) + Number(goal.valorPago)
                 });
             })
             setShow(false);
@@ -53,7 +53,7 @@ export default function GoalLine({goal, key}) {
     const editGoal = (e) => {
         e.preventDefault();
         const db = firebase.firestore()
-        db.collection("goals").where("titulo", "==", goal.titulo).get().then(querySnapshot => {
+        db.collection("goals").where("titulo", "==", goal.titulo).where("valorTotal", "==", goal.valorTotal).get().then(querySnapshot => {
             querySnapshot.docs[0].ref.update({
                 titulo: titulo,
                 valorPago: valorPago,
@@ -127,10 +127,6 @@ export default function GoalLine({goal, key}) {
                                 <Form.Group>
                                     <Form.Label>Goal Title</Form.Label>
                                     <Form.Control type="text" value={titulo} onChange={(e) => setTitulo(e.target.value)}></Form.Control>
-                                </Form.Group>
-                                <Form.Group>
-                                    <Form.Label>Paid Value</Form.Label>
-                                    <Form.Control type="number" value={valorPago} onChange={(e) => setValorPago(e.target.value)}></Form.Control>
                                 </Form.Group>
                                 <Form.Group>
                                     <Form.Label>Total Value</Form.Label>
